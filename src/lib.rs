@@ -7,13 +7,17 @@
 //! Functions from Other Languages"
 //! https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html#calling-rust-functions-from-other-languages
 
+extern crate hsbindgen;
+
+use hsbindgen::show_streams;
 use std::{ffi::CStr, os::raw::c_char};
 
 /// This function does not require an extensive documentation to understand
 /// what it does, but it's always nice to point out that everything is safe
 /// here :)
-pub fn hello(input: &str) {
-    println!("Hello, {}!", input);
+#[show_streams]
+pub fn hello(foofoofoobar: &str) {
+    println!("Foooooo, {}!", foofoofoobar);
 }
 
 /// A wrapper to `hello` function using `extern "C"` ABI call conventions.

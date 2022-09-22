@@ -49,13 +49,15 @@ main = defaultMainWithHooks simpleUserHooks {
            confHook = rustConfHook
        }
 
-
+-- TODO rather be a build hook
 rustPreConf :: Args ->
                  ConfigFlags ->
                  IO PD.HookedBuildInfo
 rustPreConf args flags = do
     buildInfo <- preConf simpleUserHooks args flags
+    -- TODO nice printing message with crab emoji
     rawSystemExit (fromFlag $ configVerbosity flags) "cargo" ["build", "--release"]
+    ---
     return buildInfo
 
 
